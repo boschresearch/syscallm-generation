@@ -1,0 +1,41 @@
+#!/bin/bash -l
+
+## scheduler parameters ##
+
+#BSUB -J gpt5.2	# job name
+#BSUB -o gpt5.2.%J.stdout        # optional: have output written to specific file
+#BSUB -e gpt5.2.%J.stderr        # optional: have errors written to specific file
+#BSUB -q batch_cpu			# optional: select the queue, you would like to use. E.g., batch_a100, batch_h100
+#BSUB -W 7:00                       # fill in desired wallclock time [hours,]minutes (hours are optional)
+#BSUB -n 4                          # min CPU cores,max CPU cores (max cores is optional)
+#BSUB -M 100                       # fill in required amount of memory per CPU core(in Mbyte)
+#BSUB -R "span[hosts=1]"          # optional: run on single host (if using more than 1 CPU core)
+# #BSUB -R "span[ptile=28]"         # optional: fill in to specify cores per node (max 28-40 depending on node type)
+# #BSUB -P myProject                # optional: fill in cluster project
+
+## job parameters ##
+
+# load modules
+module purge
+module load conda cuda/13.0.0 cudnn/13.0_v9.15
+
+# activate environment
+conda activate llm-syscall
+
+# openai key
+export OPENAI_API_KEY2
+
+# run 
+MAN_DIR="/home/$USER/syscallm-generation/man"
+MODES=("success" "error_code")
+
+for MODE in "${MODES[@]}"; do
+    for RUN in {1..5}; do
+	echo "MODE: {$MODE} RUN: {$RUN}"
+        python3 ./src/gpt5.2_run.py \
+            --mode="$MODE" \
+            --man_dir_path="$MAN_DIR" \
+            --output_dir_path="$MODE/gpt-5.2/run$RUN"
+    done
+done
+
