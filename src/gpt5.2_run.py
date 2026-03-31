@@ -9,10 +9,10 @@ import output_json_schema
 import prompts
 
 # parameters
-endpoint = "https://openaichatgpt-cr-2.openai.azure.com/openai/v1/"
 model_name = "gpt-5.2"
 deployment_name = "gpt-5.2"
-api_key = os.environ.get("OPENAI_API_KEY2")
+endpoint = os.environ.get("OPENAI_ENDPOINT")
+api_key = os.environ.get("OPENAI_API_KEY")
 
 def get_client():
     return OpenAI(

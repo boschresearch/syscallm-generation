@@ -4,16 +4,15 @@
 # SPDX-License-Identifier: AGPL-3.0
 
 # variables
-KERNEL_VERSION=$(uname -r)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKING_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
-MAN_DIR="$WORKING_DIR/data/man/$KERNEL_VERSION"
-MAN_MISSING_DIR="$WORKING_DIR/data/man/missing"
-MISSING_FILE="${MAN_MISSING_DIR}/${KERNEL_VERSION}.txt"
+MAN_DIR="$WORKING_DIR/data/man"
+MISSING_FILE="${MAN_DIR}/missing.txt"
 
 # clean up
 rm -rf "$MAN_DIR" 
-mkdir -p "$MAN_DIR" "$MAN_MISSING_DIR"
+mkdir -p "$MAN_DIR"
+
 rm -f "$MISSING_FILE"
 
 # check for required packages

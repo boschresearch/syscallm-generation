@@ -2,8 +2,6 @@
 
 This repository provides scripts and prompts for generating system call error injection tests using large language models (LLMs) based on the system call manual pages. The goal is to automate the creation of test cases that simulate various system call failures, improving the robustness and reliability of software systems.
 
-For a high-level overview and additional context, please refer to the [LLM-Based Error Injection Test Generation](https://inside-docupedia.bosch.com/confluence2/display/ICT174/1.+LLM-Based+Error+Injection+Test+Generation).
-
 ## Features
 
 - **Manual Page Extraction:** Automatically extracts relevant system call manual pages to inform test generation.
@@ -25,7 +23,7 @@ CPU-only operation is possible but will be significantly slower.
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.boschdevcloud.com/bios-SPARTA/syscallm-generation.git
+    git clone https://github.com/boschresearch/syscallm-generation.git
     cd syscallm-generation
     ```
 
@@ -41,11 +39,13 @@ CPU-only operation is possible but will be significantly slower.
    bash ./scripts/extract_syscall_man_pages.sh
    ```
    
-2. **Set `OPENAI_API_KEY` as environment variable:** (for Open AI models)
+2. **Set `OPENAI_ENDPOINT` and `OPENAI_API_KEY` as environment variable:** (for Open AI models)
    ```bash
-   # if you are using bash
+    # if you are using bash
+    echo 'export OPENAI_ENDPOINT="your_endpoint_here"' >> ~/.bashrc
     echo 'export OPENAI_API_KEY="your_key_here"' >> ~/.bashrc
     # if you are using zsh
+    echo 'export OPENAI_ENDPOINT="your_endpoint_here"' >> ~/.zshrc
     echo 'export OPENAI_API_KEY="your_key_here"' >> ~/.zshrc
    ```
 
@@ -64,10 +64,7 @@ This project relies on the usage of open-source Python libraries.
 
 | Name          | License                    |
 |---------------|----------------------------|
-| transformers  | Apache 2.0                 |
-| vllm          | Apache 2.0                 |
 | openai        | MIT                        |
-| AzureOpenAI   | MIT (via `openai` package) |
 | pydantic      | MIT                        |
 
 ## Contact
@@ -76,4 +73,4 @@ For any questions or issues, please contact [Min Hee Jo](mailto:MinHee.Jo@de.bos
 
 ## License
 
-PROJECT-NAME is open-sourced under the AGPL-3.0 license. See the LICENSE file for details.
+SyscaLLM-Generation is open-sourced under the AGPL-3.0 license. See the LICENSE file for details.

@@ -23,10 +23,13 @@ module load conda cuda/13.0.0 cudnn/13.0_v9.15
 conda activate llm-syscall
 
 # openai key
-export OPENAI_API_KEY2
+export OPENAI_ENDPOINT
+export OPENAI_API_KEY
 
 # run 
-MAN_DIR="/home/$USER/syscallm-generation/man"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+WORKING_DIR="$(dirname "$SCRIPT_DIR")"
+MAN_DIR="$WORKING_DIR/data/man"
 MODES=("success" "error_code")
 
 for MODE in "${MODES[@]}"; do
