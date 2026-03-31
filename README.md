@@ -1,5 +1,8 @@
 # LLM-Based System Call Error Injection Test Generation
 
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
+
 This repository provides scripts and prompts for generating system call error injection tests using large language models (LLMs) based on the system call manual pages. The goal is to automate the creation of test cases that simulate various system call failures, improving the robustness and reliability of software systems.
 
 ## Features
